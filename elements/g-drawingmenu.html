@@ -143,6 +143,7 @@ Polymer({
 				feature.style.stroke = self.selectedColor;
 				feature.style.fill = 'none';
 				feature.style['marker-url'] = self.selectedIcon;
+				self.fire('changedfeature', {feature: feature});
 			};
         	//this.addSketchLayer();
         	this.sketch.finish();
@@ -157,6 +158,7 @@ Polymer({
         	var featureReady = function(feature){
 				feature.style.stroke = self.selectedColor;
 				feature.style.fill = 'none';
+				self.fire('changedfeature', {feature: feature});
 			};
         	this.sketch.finish();
         	this.$.linebuttons.style.display = 'block';
@@ -169,7 +171,8 @@ Polymer({
         	var self = this;
         	var featureReady = function(feature){
  				feature.style.stroke = self.selectedColor;
-				feature.style.fill = 'none'; //fills on a map are not very useful	
+				feature.style.fill = 'none'; //fills on a map are not very useful
+				self.fire('changedfeature', {feature: feature});
 			};
         	this.sketch.finish();
         	this.$.polybuttons.style.display = 'block';
