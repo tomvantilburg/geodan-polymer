@@ -139,14 +139,10 @@ Polymer({
         },
         startPoint: function(){
         	var self = this;
-        	var featureReady = function(e){
-        		self.map.mapdiv.removeEventListener('featureCreated', featureReady);
-				var feature = e.detail;
+        	var featureReady = function(feature){
 				feature.style.stroke = self.selectedColor;
 				feature.style.fill = 'none';
 				feature.style['marker-url'] = self.selectedIcon;
-				//self.fire('newfeature', {feature: feature}); 
-				//self.$.drawbuttons.selected = -1;
 			};
         	//this.addSketchLayer();
         	this.sketch.finish();
@@ -155,15 +151,12 @@ Polymer({
         		.then(function(d){
 					featureReady(d);
 				});
-        	//this.map.mapdiv.addEventListener('featureCreated', featureReady);
         },
         startLine: function(){
         	var self = this;
         	var featureReady = function(feature){
 				feature.style.stroke = self.selectedColor;
 				feature.style.fill = 'none';
-        		//self.fire('newfeature', {feature: feature}); 
-				//self.$.drawbuttons.selected = -1;
 			};
         	this.sketch.finish();
         	this.$.linebuttons.style.display = 'block';
@@ -177,8 +170,6 @@ Polymer({
         	var featureReady = function(feature){
  				feature.style.stroke = self.selectedColor;
 				feature.style.fill = 'none'; //fills on a map are not very useful	
-				//self.fire('newfeature', {feature: feature}); //Doesn't work 
-				//self.$.drawbuttons.selected = -1;
 			};
         	this.sketch.finish();
         	this.$.polybuttons.style.display = 'block';
@@ -186,7 +177,6 @@ Polymer({
         		.then(function(d){
 					featureReady(d);
 				});
-        	this.map.mapdiv.addEventListener('featureCreated', featureReady);
         },
         startEdit: function(){
         	var self = this;
