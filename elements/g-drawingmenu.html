@@ -124,8 +124,8 @@ Polymer({
         	this.polyColors = ['blue','green', 'red', 'yellow'];
         },
         setLayer: function(layer){
-        	this.map = this.layer.map;
-        	this.sketch = this.layer.map.sketch;
+        	this.map = layer.map;
+        	this.sketch = layer.map.sketch;
         	this.disabled = false;
         },
         addSketchLayer: function(){
